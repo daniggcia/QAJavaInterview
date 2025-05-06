@@ -1,18 +1,18 @@
 package pages;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 import java.util.List;
 
-public class HandToolsPage {
-    WebDriver driver;
-    WebDriverWait wait;
+public class HandToolsPage extends BasePage {
+    private WebDriverWait wait;
 
     public HandToolsPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
@@ -35,16 +35,19 @@ public class HandToolsPage {
 
     // Aplicar filtro por marca
     public void filterByBrand(String brand) {
-        WebElement checkbox = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//label[contains(.,'" + brand + "')]//input")));
+        WebElement checkbox = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//label[contains(.,'" + brand + "')]//input")
+        ));
         if (!checkbox.isSelected()) {
             checkbox.click();
         }
     }
-
-    // Obtener lista de precios de los productos visibles
     public List<WebElement> getPrices() {
-        By priceSelector = By.cssSelector(".card-price"); // ⚠️ Cambiar si difiere
-        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(priceSelector));
-        return driver.findElements(priceSelector);
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+                By.cssSelector("span[data-test='product-price']")
+        ));
+        return driver.findElements(By.cssSelector("span[data-test='product-price']"));
     }
+
+
 }

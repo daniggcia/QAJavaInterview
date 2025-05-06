@@ -1,34 +1,31 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.*;
+
+import java.time.Duration;
 import java.util.List;
 
 public class RentalsPage {
 
     WebDriver driver;
 
-    // Constructor
     public RentalsPage(WebDriver driver) {
         this.driver = driver;
     }
 
-    // Localizador del menú Categories > Rentals
-    By categoriesMenu = By.xpath("//a[text()='Categories']");
-    By rentalsOption = By.xpath("//a[text()='Rentals']");
-
-    // Títulos de productos
-    By productTitles = By.cssSelector(".product-title");
-
-    // Método para navegar a Rentals
     public void goToRentals() {
-        driver.findElement(categoriesMenu).click();
-        driver.findElement(rentalsOption).click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement categories = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Categories")));
+        categories.click();
+        WebElement rentals = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Rentals")));
+        rentals.click();
     }
 
-    // Método para obtener todos los títulos de herramientas
     public List<WebElement> getToolTitles() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        By productTitles = By.cssSelector("h5.card-title");
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(productTitles));
         return driver.findElements(productTitles);
     }
 }
