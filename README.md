@@ -1,72 +1,74 @@
 **QaJavainterview**
 
-Proyecto de automatización de pruebas funcionales UI con Java, Selenium WebDriver, Cucumber y Maven.Desarrollado como prueba técnica para el rol de QA Automation.
+Este proyecto es una prueba técnica de automatización con Java, Selenium WebDriver, Cucumber y Maven. 
+Simula interacciones con la tienda demo [ToolShop](https://practicesoftwaretesting.com/) para validar 
+funcionalidades clave mediante pruebas E2E escritas en Gherkin.
 
 **Tecnologías utilizadas**
 
-Java 17
-
-Maven
-
-Selenium WebDriver
-
-Cucumber (Gherkin)
-
-JUnit
-
-IntelliJ IDEA
+- **Java 17**
+- **Selenium WebDriver**
+- **Cucumber (BDD)**
+- **Maven**
+- **JUnit**
+- **IntelliJ IDEA**
 
 **Estructura del proyecto**
 
-src
-├── main
-│   └── java
-│       └── com.qainterview
-│           ├── utils              # DriverFactory, ScreenshotUtil
-│           ├── hooks              # Hooks para setup/teardown
-│           └── pages              # Page Object Model
-├── test
-│   └── java
-│       ├── runners                # Clase TestRunner
-│       └── stepdefinitions        # Definiciones de pasos de Cucumber
-└── test
-└── resources
-└── features               # Escenarios Gherkin
+QaJavainterview/
+├── src/
+│ ├── main/
+│ │ └── java/
+│ │ └── pages/ # Clases Page Object Model
+│ └── test/
+│ ├── java/
+│ │ ├── runners/ # Clase TestRunner
+│ │ └── stepdefinitions/ # Definición de pasos Gherkin
+│ └── resources/
+│ └── features/ # Escenarios de prueba en Gherkin
+├── screenshots/ # Capturas de pantalla generadas automáticamente (IGNORADA por Git)
+├── .gitignore
+├── pom.xml
+└── README.md
 
-**Ejecución de pruebas**
+##  Escenarios automatizados
 
-Desde la raíz del proyecto:
+###  Power Tools
+- Añadir un producto al carrito
+- Ir al checkout
+- Introducir email inválido y contraseña
+- Pulsar Login y verificar mensaje de error
 
+###  Hand Tools
+- Aplicar filtros por categoría y marca
+- Verificar que los precios mostrados sean mayores a cero
+
+###  Rentals
+- Navegar a la categoría "Rentals"
+- Verificar que se visualicen los títulos de herramientas
+
+## ▶ Ejecución
+
+Para ejecutar todos los tests:
+
+```bash
 mvn clean test
 
-Esto:
+Los resultados se mostrarán en consola y se guardarán capturas en /screenshots.
 
-Ejecuta todos los escenarios .feature.
+📸 Capturas automáticas
+Se toma una captura al finalizar cada escenario.
 
-Inicializa el navegador.
+La carpeta screenshots/ está excluida del control de versiones y no se sube a GitHub (ver .gitignore).
 
-Toma capturas de pantalla en caso de fallo (almacenadas en /screenshots).
+🚧 Pendiente por implementar
+Validación visual del layout con herramientas como Percy.
 
-Cierra el navegador al finalizar.
+Integración continua (CI) con GitHub Actions.
 
-**Hooks**
+Reportes HTML para Cucumber.
 
-Se limpian capturas de pantalla previas antes de ejecutar nuevos tests.
+Desarrollado como parte de un proceso de selección técnica para QA Automation.
 
-Se realiza captura automática en caso de fallo.
-
-**Capturas de pantalla**
-
-Se almacenan en:
-
-/screenshots/
-
-Esta carpeta está excluida del repositorio mediante .gitignore.
-
-**Pendientes por implementar**
-
-Integración con Jenkins
-
-Soporte para ejecución paralela
-
-Reporte HTML personalizado
+Autor: Daniel González García
+daniggcia@protonmail.com
