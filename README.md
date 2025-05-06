@@ -70,5 +70,11 @@ Reportes HTML para Cucumber.
 
 Desarrollado como parte de un proceso de selección técnica para QA Automation.
 
+🤝 Contribuir
+¡Las contribuciones son bienvenidas! Puedes abrir issues o pull requests para sugerir mejoras o arreglar errores.
+
+📝 Licencia
+Este proyecto es solo para fines de aprendizaje y no representa una aplicación de producción real.
+
 Autor: Daniel González García
 daniggcia@protonmail.com
